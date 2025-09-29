@@ -1,9 +1,0 @@
-language: python
-python:
-  - "3.11"
-
-install:
-  - pip install -r GitHubApi567-hw4a/requirements.txt
-
-script:
-  - python -m unittest discover -s GitHubApi567-hw4a -p "test_*.py" -v

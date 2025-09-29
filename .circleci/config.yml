@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run: python -m pip install -U pip
-      - run: pip install -r GitHubApi567-hw4a/requirements.txt
-      - run: python -m unittest discover -s GitHubApi567-hw4a -p "test_*.py" -v
+      - run: pip install -r GitHubApi567-hw3a/requirements.txt
+      - run: python -m unittest discover -s GitHubApi567-hw3a -p "test_*.py" -v
 workflows:
   build_and_test:
     jobs:

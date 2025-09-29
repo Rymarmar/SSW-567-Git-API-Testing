@@ -2,7 +2,7 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Rymarmar/SSW-567-Git-API-Testing/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Rymarmar/SSW-567-Git-API-Testing/tree/main)
 
-**HW 03a files live here →** [`GitHubApi567-hw4a/`](GitHubApi567-hw4a/)
+**HW 03a files live here →** [`GitHubApi567-hw3a/`](GitHubApi567-hw3a/)
 
 - App: `github_api.py`  
 - Tests: `test_github_api.py`  

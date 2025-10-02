@@ -1,4 +1,3 @@
-@"
 [MASTER]
 ignore=.venv
 
@@ -7,16 +6,3 @@ max-line-length=100
 
 [MESSAGES CONTROL]
 disable=missing-module-docstring,missing-class-docstring
-"@ | Set-Content .pylintrc -Encoding UTF8
-
-# create .coveragerc
-@"
-[run]
-omit =
-    .venv/*
-    test_*.py
-
-[report]
-show_missing = True
-fail_under = 80
-"@ | Set-Content .coveragerc -Encoding UTF8

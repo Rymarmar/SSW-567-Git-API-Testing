@@ -2,40 +2,27 @@
 # I pledge my honor that I have abided by the Stevens Honor System
 # Changed name of file to triangles.py
 
-import json
-import requests
+"""Triangle classification module for HW03c."""
+from typing import Union
 
-class GitHubAPIError(Exception):
-    pass
+Number = Union[int, float]
 
-def fetch_user_repos(user: str):
-    """Return list of repo dicts (as parsed JSON) for a GitHub user."""
-    url = f"https://api.github.com/users/{user}/repos"
-    resp = requests.get(url, timeout=10)
-    if resp.status_code != 200:
-        raise GitHubAPIError(f"GET {url} -> {resp.status_code}")
-    return json.loads(resp.text)
+def classify_triangle(a: Number, b: Number, c: Number) -> str:
+    """Return 'Equilateral', 'Isosceles', 'Scalene', or 'Not a triangle'."""
+    # Type & value checks
+    for side in (a, b, c):
+        if not isinstance(side, (int, float)):
+            raise TypeError("Sides must be int or float")
+        if side <= 0:
+            raise ValueError("Sides must be > 0")
 
-def fetch_repo_commits(user: str, repo: str):
-    """Return list of commit dicts (as parsed JSON) for user/repo."""
-    url = f"https://api.github.com/repos/{user}/{repo}/commits"
-    resp = requests.get(url, timeout=10)
-    if resp.status_code != 200:
-        raise GitHubAPIError(f"GET {url} -> {resp.status_code}")
-    return json.loads(resp.text)
+    # Triangle inequality
+    if not (a + b > c and b + c > a and c + a > b):
+        return "Not a triangle"
 
-def user_repos_with_commit_counts(user: str):
-    """
-    Given a GitHub user ID, return a list of (repo_name, commit_count) tuples.
-    Keep it simple by counting items from the first page of commits per assignment instructions.
-    """
-    repos = fetch_user_repos(user)
-    results = []
-    for r in repos:
-        name = r.get("name")
-        # skip repos without a name field defensively
-        if not name:
-            continue
-        commits = fetch_repo_commits(user, name)
-        results.append((name, len(commits)))
-    return results
+    # Classes
+    if a == b == c:
+        return "Equilateral"
+    if a == b or b == c or a == c:
+        return "Isosceles"
+    return "Scalene"

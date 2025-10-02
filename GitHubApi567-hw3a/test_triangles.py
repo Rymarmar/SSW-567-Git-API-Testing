@@ -2,6 +2,7 @@
 # Benedict Martinez – SSW 567 – HW 03b
 # Tests are fully mocked: no real HTTP requests are made.
 # I pledge my honor that I have abided by the Stevens Honor System
+# Changed name of file to test_triangles.py
 
 import unittest
 from unittest import mock

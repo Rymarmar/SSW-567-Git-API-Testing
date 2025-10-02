@@ -1,5 +1,6 @@
 # Benedict Martinez – SSW 567 – HW 03a
 # I pledge my honor that I have abided by the Stevens Honor System
+# Changed name of file to triangles.py
 
 import json
 import requests

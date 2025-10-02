@@ -1,14 +1,35 @@
 version: 2.1
+
 jobs:
-  test:
+  build_and_test:
     docker:
       - image: cimg/python:3.11
+    working_directory: ~/project
     steps:
       - checkout
-      - run: python -m pip install -U pip
-      - run: pip install -r GitHubApi567-hw3a/requirements.txt
-      - run: python -m unittest discover -s GitHubApi567-hw3a -p "test_*.py" -v
+
+      # Install tools needed for this repo
+      - run: python -V
+      - run: pip install -U pip
+      - run: |
+          if [ -f GitHubApi567-hw3a/requirements.txt ]; then
+            pip install -r GitHubApi567-hw3a/requirements.txt
+          fi
+      # Ensures pytest/pylint/coverage are present even if requirements.txt doesn't have them
+      - run: pip install pytest pylint coverage
+
+      - run:
+          name: Lint
+          command: |
+            pylint GitHubApi567-hw3a/triangles.py GitHubApi567-hw3a/test_triangles.py
+
+      # Run tests with pytest (not unittest)
+      - run:
+          name: Run tests
+          command: |
+            pytest -q GitHubApi567-hw3a
+
 workflows:
   build_and_test:
     jobs:
-      - test
+      - build_and_test
